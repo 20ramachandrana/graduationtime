@@ -49,7 +49,6 @@ room.setAttribute('sharedspace', { room: roomName, hold: false });
 <body>
     <!-- Inside body -->
 <a-scene>
-    <a-camera></a-camera>
   <a-entity sharedspace avatars>
     <!-- Actually, this is not needed but convenient to have some reference points -->
       <a-entity environment="preset: forest"></a-entity>
@@ -57,7 +56,9 @@ room.setAttribute('sharedspace', { room: roomName, hold: false });
 </a-scene>
 <template>
     
-    <a-sphere radius="0.1" color="red"> <a-text value="name" position = "-.3 .2 0"></a-text></a-sphere>
-</template>
+    <a-camera> </a-camera>
+      <a-sphere radius="0.1" color="red"> <a-text value="name" position = "-.3 .2 0"></a-text></a-sphere>
+
+      </template>
     </body>
 </html>
