@@ -5,13 +5,26 @@
 <body>
 
     <form action="/register" method="post" autocomplete="off">
-        <input style="width: 100%" name="f_name" type="text" alt="First Name" placeholder="First Name (can be a shortened form of it)"/>
+        <input style="width: 100%" name="f_name" type="text" alt="First Name" placeholder="First Name (can be a shortened form of it)" />
         <br />
-        <input style="width: 100%" name="l_name"type="text" alt="Last Name" placeholder="Last Name"/>
+        <input style="width: 100%" name="l_name" type="text" alt="Last Name" placeholder="Last Name" />
         <br />
-        <input style="width: 100%" name="email" type="text" alt="Email" placeholder="Email"/>
+        <input style="width: 100%" name="email" type="text" alt="Email" placeholder="Email" />
         <br />
-        
+        <p>What color do you want your sphere to be in the chat?</p>
+        <select name="color">
+            <option selected value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="chartreuse">Chartreuse/Neon Green</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="pink">Pink</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+        </select>
+        <br />
         <button type="submit">Register</button>
     </form>
 </body>

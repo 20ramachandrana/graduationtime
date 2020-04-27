@@ -1,12 +1,8 @@
 import os
-import psycopg2
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from tempfile import mkdtemp
-import sqlite3
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
-from random import randint
 from smtplib import SMTP_SSL as SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -24,7 +20,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 @app.route("/")
 @login_required
 def home():
-    return render_template("index.html", name = session["name"])
+    return render_template("index.html", name=session["name"], color=session["color"])
 
 @app.route('/register', methods = ['GET','POST'])
 def register():
@@ -40,7 +36,8 @@ def register():
         elif (request.form.get("email")).find("@abschools.org", 0, len(request.form.get("email"))) == -1 or (request.form.get("email")).find("20", 0, len(request.form.get("email"))) == -1:
             return apology("Please use your abschools.org email if you're a senior or sign up with another email as an attendee")
         email = request.form.get("email")
-        session["email"] = request.form.get("email")
+        session["color"] = request.form.get("color")
+        session["email"] = email
         session["name"] = f_name
         return redirect("/")
     return render_template("register.html")
