@@ -1,9 +1,9 @@
 <html>
 <head>
-<!-- Inside head -->
-<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/delapuente/aframe-sharedspace-component/master/dist/aframe-sharedspace-component.min.js"></script>
-<script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <!-- Inside head -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/delapuente/aframe-sharedspace-component/master/dist/aframe-sharedspace-component.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
 
 </head>
 <body>
@@ -15,7 +15,10 @@
   </a-entity>
 </a-scene>
 <template>
-  <a-sphere radius="0.1" color=”{{ color }}”><a-text value = "{{ name }}" position="-0.3 0.2 0"></a-text></a-sphere>
+    <a-entity>
+        <a-sphere radius="0.1" color="{{ color }}"></a-sphere>
+        <a-text value="{{ name }}" position="{{ position }}"></a-text>
+       </a-entity>
 </template>
     </body>
 </html>

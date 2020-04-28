@@ -1,4 +1,5 @@
 import os
+from tempfile import mkdtemp
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -20,7 +21,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 @app.route("/")
 @login_required
 def home():
-    return render_template("index.html", name=session["name"], color=session["color"])
+    return render_template("index.html", name=session["name"], color=session["color"], position=session["position"])
 
 @app.route('/register', methods = ['GET','POST'])
 def register():
@@ -38,7 +39,8 @@ def register():
         email = request.form.get("email")
         session["color"] = request.form.get("color")
         session["email"] = email
-        session["name"] = f_name
+        session["name"] = f_name + " " + l_name
+        session["position"] = str(-.1-0.05*(len(session["name"])-1))+" 0.2 0"
         return redirect("/")
     return render_template("register.html")
 if __name__ == "__main__":
