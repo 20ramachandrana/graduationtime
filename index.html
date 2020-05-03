@@ -1,39 +1,60 @@
-﻿<html>
+<html>
 <head>
-    <!-- Inside head -->
-    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/delapuente/aframe-sharedspace-component/master/dist/aframe-sharedspace-component.min.js"></script>
-    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
-    <script>
-    var scene = document.querySelector('a-scene');
-var room = document.querySelector('[sharedspace]');
-        let roomName = window.location.search.substr(1);
-if (!roomName) {
-  roomName = 'room-' + Date.now();
-  history.pushState({}, '', window.location + `?${roomName}`);
+<!-- Inside head -->
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/delapuente/aframe-sharedspace-component/master/dist/aframe-sharedspace-component.min.js"></script>
+<script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+<script>
+    function submit() {
+        var isValid = true;
+        var fname = document.getElementById("f_name").value;
+        var lname = document.getElementById("l_name").value;
+        var email = document.getElementById("email").value;
+        var color = document.getElementById("color").value;
+        if (fname == "")
+        {
+            alert("Please enter your first name! A nickname/shortened form is okay!");
+            return;
+        }
+        if (lname == "")
+        {
+            alert("Please enter your last name! A shortened form is okay!");
+            return;
+        }
+        if(email="" || !(email).includes("20") || !(email).includes("@abschools.org"))
+        {
+            alert("Use your abschools email if you are a senior!");
+            return;
+        }
+        
+        document.getElementById("body").innerHTML = "<!-- Inside body --><a-scene><a-entity sharedspace avatars><a-entity environment=\"preset: forest\"><a-entity></a-entity></a-scene><template><a-sphere radius=\"0.1\" color=\"" + color + "\"></a-sphere></template>";
 }
-connect();
+    
 
-function connect() {
-  if (!scene.hasLoaded) {
-    scene.addEventListener('loaded', connect);
-    return;
-  }
-  room.setAttribute('sharedspace', { room: roomName, hold: false });
-}
-    </script>
+</script>
+    <title>Register</title>
 </head>
-<body>
-<!-- Inside body -->
-<a-scene>
-    <a-entity sharedspace avatars>
-        <!-- Actually, this is not needed but convenient to have some reference points -->
-        <a-entity environment="preset: forest">
-            <a-entity>
-            </a-entity>
-</a-scene>
-<template>
-    <a-sphere radius="0.1" color=”#ff0000”></a-sphere>
-</template>
+<body id="body">
+        <input style="width: 100%" id="f_name" type="text" alt="First Name" placeholder="First Name (can be a shortened form of it)" />
+        <br />
+        <input style="width: 100%" id="l_name" type="text" alt="Last Name" placeholder="Last Name" />
+        <br />
+        <input style="width: 100%" id="email" type="text" alt="Email" placeholder="Email" />
+        <br />
+        <p>What color do you want your sphere to be in the chat?</p>
+        <select id="color">
+            <option selected value="#ff0000">Red</option>
+            <option value="#ffa500">Orange</option>
+            <option value="#ffff00">Yellow</option>
+            <option value="#7fff00">Chartreuse/Neon Green</option>
+            <option value="#008000">Green</option>
+            <option value="#0000ff">Blue</option>
+            <option value="#800080">Purple</option>
+            <option value="#ffc0cb">Pink</option>
+            <option value="#000000">Black</option>
+            <option value="#ffffff">White</option>
+        </select>
+        <br />
+        <button onclick="submit()">Register</button>
 </body>
 </html>
