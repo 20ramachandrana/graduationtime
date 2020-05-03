@@ -36,14 +36,10 @@
         }
                               
     function getCustomAvatar(color)
-{
-    var camera = document.createElement("a-camera")
-    camera.setAttribute("look-controls-enabled", true);
-    camera.setAttribute("wasd-controls-enabled", true);
+    {
    var sphere = document.createElement("a-sphere");
     sphere.setAttribute('material', 'color', color);
-    camera.appendChild(sphere);
-    return camera;
+    return sphere;
 }
 </script>
     <title>Register</title>
