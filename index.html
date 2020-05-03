@@ -26,11 +26,25 @@
             alert("Use your abschools email if you are a senior!");
             return;
         }
-        
-        document.getElementById("body").innerHTML = "<!-- Inside body --><a-scene><a-entity sharedspace avatars><a-entity environment=\"preset: forest\"><a-entity></a-entity></a-scene><template><a-sphere radius=\"0.1\" color=\"" + color + "\"></a-sphere></template>";
+        document.getElementById("body").innerHTML = "<!-- Inside body --><a-scene><a-entity sharedspace avatars=\"template:none\"><a-entity environment=\"preset: forest\"></a-scene>";
+        var room = document.querySelector('[sharedspace]');
+        room.addEventListener('enterparticipant', function (evt) {
+        var avatar = getCustomAvatar(color);
+        avatar.dataset.sharedspaceId = evt.detail.id;
+        room.appendChild(avatar);}
+        );
+        }
+                              
+    function getCustomAvatar(color)
+{
+    var camera = document.createElement("a-camera")
+    camera.setAttribute("look-controls-enabled", true);
+    camera.setAttribute("wasd-controls-enabled", true);
+   var sphere = document.createElement("a-sphere");
+    sphere.setAttribute('material', 'color', color);
+    camera.appendChild(sphere);
+    return camera;
 }
-    
-
 </script>
     <title>Register</title>
 </head>
